@@ -1,14 +1,12 @@
 package utilisateurs;
 
-public class Administrateur {
-
+public class Administrateur extends Employe {
 	
+	private String codeSecret;
 	
-	
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	public Administrateur(String prenom, String nom, String dateDeNaissance,String gmail,String motDePasse,String codeSecret) {
+		super(prenom,nom,dateDeNaissance,gmail,motDePasse);
+		this.codeSecret = codeSecret;
 	}
 
 }
