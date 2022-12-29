@@ -1,12 +1,10 @@
 package serveur;
 import utilisateurs.*;
 public class Serveur {
-	private int nbDeEmploye;
-	private Employe[] listeDeEmploye;
+	public int nbDeEmploye;
+	public Employe[] listeDeEmploye = new Employe[100];
 	
-	public Serveur() {
-		this.nbDeEmploye = 0;
-		this.listeDeEmploye = new Employe[100];	
+	public Serveur() {	
 	}
 	
 	public String ajouterEmploye(Employe employe) {

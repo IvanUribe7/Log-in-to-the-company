@@ -6,7 +6,7 @@ public class Administrateur extends Employe {
 	
 	public Administrateur(String prenom, String nom, String dateDeNaissance,String gmail,String motDePasse,String codeSecret) {
 		super(prenom,nom,dateDeNaissance,gmail,motDePasse);
-		this.codeSecret = codeSecret;
+		this.codeSecret = "123456789";
 	}
 
 }

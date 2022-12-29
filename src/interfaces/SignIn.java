@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import utilisateurs.*;
 import serveur.Serveur;
+import testAndMain.*;
 
 public class SignIn extends JFrame implements ActionListener{
 		
@@ -30,14 +31,11 @@ public class SignIn extends JFrame implements ActionListener{
 				messageDateDeNaissance = new JLabel("Date de naissance ");
 				messageDateDeNaissance.setBounds(100,180,200,20);
 				
-				messageGmail = new JLabel("Adresse mail ");
-				messageGmail.setBounds(100,230,200,20);
-				
 				messagePassword = new JLabel("Mot de passe ");
-				messagePassword.setBounds(100,280,200,20);
+				messagePassword.setBounds(100,230,200,20);
 				
 				messageQuestionAdmin = new JLabel("Voulez-vous créer un compte administrateur ?");
-				messageQuestionAdmin.setBounds(100,330,300,20);
+				messageQuestionAdmin.setBounds(100,280,300,20);
 				
 				
 				prenom = new JTextField();
@@ -49,20 +47,19 @@ public class SignIn extends JFrame implements ActionListener{
 				dateDeNaissance = new JFormattedTextField("jj/MM/aaaa");
 				dateDeNaissance.setBounds(100,200,68,20);
 				
-				gmail = new JTextField();
-				gmail.setBounds(100,250,200,20);
-				
 				password = new JPasswordField();
-				password.setBounds(100,300,200,20);
+				password.setBounds(100,250,200,20);
 				
 				ouiAdmin = new JRadioButton("Oui");
-				ouiAdmin.setBounds(180,350,200,20);
-
+				ouiAdmin.setBounds(180,300,200,20);
+				ouiAdmin.addActionListener(this);
+				
 				nonAdmin = new JRadioButton("Non");
-				nonAdmin.setBounds(110,350,200,20);
+				nonAdmin.setBounds(110,300,200,20);
+				nonAdmin.addActionListener(this);
 				
 				accepter = new JButton("Accepter");
-				accepter.setBounds(165,400,100,20);
+				accepter.setBounds(165,350,100,20);
 				accepter.addActionListener(this);
 				
 				
@@ -75,12 +72,10 @@ public class SignIn extends JFrame implements ActionListener{
 				panel.add(messagePrenom);
 				panel.add(messageNom);
 				panel.add(messageDateDeNaissance);
-				panel.add(messageGmail);
 				panel.add(messagePassword);
 				panel.add(prenom);
 				panel.add(nom);
 				panel.add(dateDeNaissance);
-				panel.add(gmail);
 				panel.add(password);
 				panel.add(ouiAdmin);
 				panel.add(nonAdmin);
@@ -90,7 +85,7 @@ public class SignIn extends JFrame implements ActionListener{
 				
 				add(panel);
 				setSize(450,500);
-				setTitle("Accez à votre espace entreprise");
+				setTitle("Enregistrement des données en cours...");
 			
 				setVisible(true);
 			}
@@ -102,21 +97,43 @@ public class SignIn extends JFrame implements ActionListener{
 			}
 			
 			public void actionPerformed(ActionEvent e) {
+				if(e.getSource()==ouiAdmin) {
+					JOptionPane.showMessageDialog(null, "je sui god");
+				}
 			    if (e.getSource() == accepter) {
+			    	
+			    	
+			    	
+			
+			    Serveur server = new Serveur();
+			    Methodes methodes = new Methodes();
 				String prenomUser = prenom.getText();
 				String nomUser = nom.getText();
 				String dateDeNaissanceUser = dateDeNaissance.getText();
-				String gmailUser = gmail.getText();
 				String passwordUser = String.valueOf(password.getPassword());
+				String gmailUser = creerAdresseMail(prenomUser,nomUser);
 				
+				if(methodes.estAuBonFormatFormulaireSignIn(dateDeNaissanceUser,prenomUser,nomUser)) {
+					JOptionPane.showMessageDialog(null, "Erreur: Les données fournis sont pas au bon format");
+					setVisible(false);
+					SignIn interfaceSignIn = new SignIn();
+
+				}else {
+					
+				JOptionPane.showMessageDialog(null, "Ton adresse mail est: " + gmailUser + "\n Votre compte employé a été creer avec succès!");
 				Employe employe = new Employe(prenomUser,nomUser,dateDeNaissanceUser,gmailUser,passwordUser);
+				server.ajouterEmploye(employe);
+				JOptionPane.showMessageDialog(null, (server.listeDeEmploye[0]).getPrenom());
 				
-				String messageServeur = serveur.ajouterEmploye(employe);
-				
-				JOptionPane.showMessageDialog(null, messageServeur);
-				
+				}
 				
 			}
 		}
+			
+			public String creerAdresseMail(String prenom, String nom) {
+				prenom = prenom.substring(0,1).toLowerCase() + prenom.substring(1).toLowerCase();
+				nom = nom.substring(0,1).toLowerCase() + nom.substring(1).toLowerCase();
+				return prenom + "_" + nom + "@univtls3.fr";
+			}
 
 }

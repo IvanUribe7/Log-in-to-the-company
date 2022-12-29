@@ -3,6 +3,8 @@ package interfaces;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import utilisateurs.*;
+import serveur.Serveur;
 
 public class PremiereInterface extends JFrame implements ActionListener {
 	JLabel messageTitre;
@@ -15,9 +17,11 @@ public class PremiereInterface extends JFrame implements ActionListener {
 		
 		creerUneCompte = new JButton("Creer une nouvelle compte ");
 		creerUneCompte.setBounds(80,80,300,20);
+		creerUneCompte.addActionListener(this);
 		
 		accederAvecVotreCompte = new JButton("Accédez avec votre compte");
 		accederAvecVotreCompte.setBounds(80,130,300,20);
+		accederAvecVotreCompte.addActionListener(this);
 		
 		panel = new JPanel();
 		panel.setLayout(null);
@@ -33,8 +37,19 @@ public class PremiereInterface extends JFrame implements ActionListener {
 	}
 	
 	public static void main(String[] args) {
+		Serveur serveur = new Serveur();
 		PremiereInterface premiereInterface = new PremiereInterface();
 		
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+	    if (e.getSource() == creerUneCompte) {
+	    	setVisible(false);
+			SignIn interfaceSignIn = new SignIn();
+		}else {
+			setVisible(false);
+			SignUp interfaceSignUp = new SignUp();
+		}
 	}
 	
 }

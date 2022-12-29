@@ -46,6 +46,14 @@ public class Employe {
 	public void setGmail(String gmail) {
 		this.gmail = gmail;
 	}
+
+	public String getMotDePasse() {
+		return motDePasse;
+	}
+
+	public void setMotDePasse(String motDePasse) {
+		this.motDePasse = motDePasse;
+	}
 	
 	
 }
