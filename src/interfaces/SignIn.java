@@ -123,8 +123,6 @@ public class SignIn extends JFrame implements ActionListener{
 				JOptionPane.showMessageDialog(null, "Ton adresse mail est: " + gmailUser + "\n Votre compte employé a été creer avec succès!");
 				Employe employe = new Employe(prenomUser,nomUser,dateDeNaissanceUser,gmailUser,passwordUser);
 				server.ajouterEmploye(employe);
-				JOptionPane.showMessageDialog(null, (server.listeDeEmploye[0]).getPrenom());
-				
 				}
 				
 			}
