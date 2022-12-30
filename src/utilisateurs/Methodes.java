@@ -5,14 +5,12 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 public class Methodes{
 	
-	public Methodes() {
-	}
+	public static Methodes methode;
 	
 	public boolean estDansLaListeDesEmployes(String adresseMail,String motDePasse) {
-		Serveur server = new Serveur();
-		Employe[] listeDeEmploye = server.getListeDeEmploye();
-		for(int i = 0; i < server.getNbDeEmploye();i++) {
-			if((listeDeEmploye[i].getGmail()).equals(adresseMail)&&(listeDeEmploye[i].getMotDePasse()).equals(adresseMail)) {
+		Employe[] listeDeEmploye = Employe.getListeDeEmploye();
+		for(int i = 0; i < Employe.getNbDeEmploye();i++) {
+			if((listeDeEmploye[i].getGmail()).equals(adresseMail)&&(listeDeEmploye[i].getMotDePasse()).equals(motDePasse)) {
 				return true;
 			}
 		}
@@ -20,10 +18,9 @@ public class Methodes{
 	}
 	
 	public Employe employeDansLaListe(String adresseMail,String motDePasse) {
-		Serveur server = new Serveur();
-		Employe[] listeDeEmploye = server.getListeDeEmploye();
-		for(int i = 0; i < server.getNbDeEmploye();i++) {
-			if((listeDeEmploye[i].getGmail()).equals(adresseMail)&&(listeDeEmploye[i].getMotDePasse()).equals(adresseMail)) {
+		Employe[] listeDeEmploye = Employe.getListeDeEmploye();
+		for(int i = 0; i < Employe.getNbDeEmploye();i++) {
+			if((listeDeEmploye[i].getGmail()).equals(adresseMail)&&(listeDeEmploye[i].getMotDePasse()).equals(motDePasse)) {
 				return listeDeEmploye[i];
 			}
 		}

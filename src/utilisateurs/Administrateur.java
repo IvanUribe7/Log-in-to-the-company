@@ -45,7 +45,6 @@ public class Administrateur extends Employe {
 			adresseMail = scanIn.nextLine();
 			System.out.println("Veuillez saisir le mot de passe ci-dessous :");
 			motDePasse = scanIn.nextLine();
-			scanIn.close();	
 			employe.setPrenom(prenom);
 			employe.setNom(nom);
 			employe.setDateDeNaissance(dateDeNaissance);

@@ -1,11 +1,12 @@
 package utilisateurs;
 
+import java.util.Scanner;
+
 public class Serveur {
 	public int nbDeEmploye;
 	public Employe[] listeDeEmploye = new Employe[100];
 	
-	public Serveur() {	
-	}
+	public static Serveur server;
 	
 	public int getNbDeEmploye() {
 		return nbDeEmploye;

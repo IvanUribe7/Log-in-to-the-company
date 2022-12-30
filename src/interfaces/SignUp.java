@@ -6,55 +6,53 @@ import java.util.Scanner;
 
 public class SignUp {
 
+	public static SignUp signUp;
 	
 	
-	
-	public void lancerCreerUnCompte() {
+	public static void main(String[] args) {
 		Methodes methodes = new Methodes();
 		Serveur server = new Serveur();
 		Scanner scanIn = new Scanner(System.in);
-		String prenom,nom,dateDeNaissance,adresseMail,motDePasse,reponseEntrerEnModeAdmin,codeSecretEmploye;
+		String prenom = "";
+		String nom,dateDeNaissance,adresseMail,motDePasse,reponseEntrerEnModeAdmin,codeSecretEmploye;
+		Scanf.openScanner();
 		System.out.println("Veuillez saisir votre prénom ci-dessous :");
-		prenom = scanIn.nextLine();
+		prenom = Scanf.getInput() ;
 		System.out.println("Veuillez saisir votre nom ci-dessous :");
-		nom = scanIn.nextLine();
+		nom = Scanf.getInput() ;
 		System.out.println("Veuillez saisir votre date de naissance ci-dessous : (format:jj/MM/aaaa)");
-		dateDeNaissance = scanIn.nextLine();
+		dateDeNaissance = Scanf.getInput() ;
 		System.out.println("Veuillez saisir votre mot de passe ci-dessous :");
-		motDePasse = scanIn.nextLine();
+		motDePasse = Scanf.getInput() ;
 		System.out.println("Voulez-vous créer un compte administrateur?: (vous aurez besoin du mot de passe secret pour y accéder)\n"
 				+ "1-Oui\n"
 				+ "2-Non\n");
-		reponseEntrerEnModeAdmin = scanIn.nextLine();
+		reponseEntrerEnModeAdmin = Scanf.getInput() ;
+		
 		adresseMail = methodes.creerAdresseMail(prenom,nom);
-		Menu menu = new Menu();
+		
 		if(reponseEntrerEnModeAdmin.equals("1")) {
 			String codeSecret = "123456789";
 			System.out.println("Saisissez le code secret (connu uniquement des administrateurs) pour créer un compte administrateur :");
-			codeSecretEmploye = scanIn.nextLine();
+			codeSecretEmploye = Scanf.getInput() ;
 			
 			if(codeSecretEmploye.equals(codeSecret)) {
 				Employe admin = new Administrateur(prenom,nom,dateDeNaissance,adresseMail,motDePasse,codeSecretEmploye);
-				server.ajouterEmploye(admin);
+				Administrateur.ajouterEmploye(admin);
 				System.out.println("Votre compte a été créé avec succès, votre nouvelle adresse e-mail est :" + adresseMail);
-				menu.lancerMenu();
-				scanIn.close();
+				Menu.main(null);
 			
 			}else {
 				System.out.println("Erreur: Code Sercret INCORRECTE, veuillez recommencer la création de votre compte!");
-				this.lancerCreerUnCompte();
-				scanIn.close();
+				SignUp.main(null);
 			}
 			
 		} else {
 			Employe employe = new Employe(prenom,nom,dateDeNaissance,adresseMail,motDePasse);
-			server.ajouterEmploye(employe);
+			Employe.ajouterEmploye(employe);
 			System.out.println("Votre compte a été créé avec succès, votre nouvelle adresse e-mail est :" + adresseMail);
-			menu.lancerMenu();
-			scanIn.close();
+			Menu.main(null);
 		}
 	}
-	
-	public static void main(String[] args) {SignUp creerUneNouvelleCompte = new SignUp();
-	creerUneNouvelleCompte.lancerCreerUnCompte();}
-}
+	}
+

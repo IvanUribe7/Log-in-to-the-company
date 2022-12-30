@@ -1,5 +1,5 @@
 package utilisateurs;
-
+import interfaces.*;
 import java.util.Scanner;
 
 public class Employe{
@@ -61,11 +61,11 @@ public class Employe{
 		Scanner scanIn = new Scanner(System.in);
 		String prenom,nom,motDePasse;
 		System.out.println("Veuillez saisir votre prénom ci-dessous :");
-		prenom = scanIn.nextLine();
+		prenom = Scanf.getInput() ;
 		System.out.println("Veuillez saisir votre nom ci-dessous :");
-		nom = scanIn.nextLine();		
+		nom = Scanf.getInput() ;		
 		System.out.println("Veuillez saisir votre mot de passe ci-dessous :");
-		motDePasse = scanIn.nextLine();
+		motDePasse = Scanf.getInput() ;
 		scanIn.close();	
 		this.setPrenom(prenom);
 		this.setNom(nom);
@@ -80,19 +80,43 @@ public class Employe{
 		System.out.println("Votre nom est: " + this.getNom());
 		System.out.println("Votre date de naissance est: " + this.getDateDeNaissance());
 		System.out.println("Votre adresse mail est: " + this.getGmail());
-		System.out.println("Que voulez-vous faire ?"
-				+ "1-Changer mes données personnels "
-				+ "2-Fermer le programme ");
+		System.out.println("Que voulez-vous faire ?\n"
+				+ "1-Changer mes données personnels\n"
+				+ "2-Aller au Menu");
 			reponse = scanIn.nextLine();
 		switch(reponse) {
 		
 		case "1":this.changerSesDonnees();
 				this.lancerProfil();
-		case "2":System.out.println("Merci d'avoir testé cette Démo!");
-		scanIn.close();
+		case "2":Menu.main(null);
 		}
 			
 		}
+	
+	public static int nbDeEmploye;
+	public static Employe[] listeDeEmploye = new Employe[100];
+	
+	public static int getNbDeEmploye() {
+		return nbDeEmploye;
+	}
+
+	public static Employe[] getListeDeEmploye() {
+		return listeDeEmploye;
+	}
+
+	public static String ajouterEmploye(Employe employe) {
+		String resultat;
+		if(nbDeEmploye==100) {
+			resultat = "Serveur: Nombre maximal d'employés atteint";
+			return resultat;
+		}
+		else {
+			Employe.listeDeEmploye[nbDeEmploye] = employe;
+			nbDeEmploye++;
+			resultat = "Serveur: L'employé " + employe.getPrenom() + " " + employe.getNom() + " a été ajouté avec succès!";
+			return resultat;
+		}
+	}
 	
 }
 

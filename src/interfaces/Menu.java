@@ -5,10 +5,9 @@ import utilisateurs.*;
 import java.util.Scanner;
 
 public class Menu {
-	
-	public void lancerMenu() {
+	public static Menu menu;
+	public static void main(String[] args) {
 		Scanner scanIn = new Scanner(System.in);
-		Serveur server = new Serveur();
 		String reponse;
 		System.out.println("Bonjour !\r\n"
 				+ "Il s'agit de l'interface principale de l'entreprise\r\n"
@@ -16,20 +15,20 @@ public class Menu {
 				+ "1-Créer un compte\r\n"
 				+ "2-Connectez-vous avec votre compte\r\n"
 				+ "3-Menu de sortie");
-		reponse = scanIn.nextLine();
+		reponse = scanIn.next();
 		
-		switch(reponse) {
-		case "1":
-		SignUp creerUneNouvelleCompte = new SignUp();
-		creerUneNouvelleCompte.lancerCreerUnCompte();
+		if(reponse.equals("1")) {
+		Employe[] liste = Employe.getListeDeEmploye();
+		System.out.println(liste[0]);
+		SignUp.main(null);
+		}
+		if(reponse.equals("2")) {
+			Employe[] liste = Employe.getListeDeEmploye();
+			System.out.println(liste[0].getGmail() + "," + liste[0].getMotDePasse());
+			SignIn.main(null);}
 		
-		case "2":
-			SignIn entrerAvecCompte = new SignIn();
-			entrerAvecCompte.lancerEntrerAvecCompte();
-		
-		case "3":
+		if(reponse.equals("3")) {
 		System.out.println("Merci d'avoir testé cette Démo!");
-		scanIn.close();
 	}
 	
 	}
