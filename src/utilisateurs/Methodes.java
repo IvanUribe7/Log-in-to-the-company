@@ -1,10 +1,34 @@
 package utilisateurs;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
-public class Methodes {
+import java.util.Scanner;
+public class Methodes{
 	
 	public Methodes() {
+	}
+	
+	public boolean estDansLaListeDesEmployes(String adresseMail,String motDePasse) {
+		Serveur server = new Serveur();
+		Employe[] listeDeEmploye = server.getListeDeEmploye();
+		for(int i = 0; i < server.getNbDeEmploye();i++) {
+			if((listeDeEmploye[i].getGmail()).equals(adresseMail)&&(listeDeEmploye[i].getMotDePasse()).equals(adresseMail)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public Employe employeDansLaListe(String adresseMail,String motDePasse) {
+		Serveur server = new Serveur();
+		Employe[] listeDeEmploye = server.getListeDeEmploye();
+		for(int i = 0; i < server.getNbDeEmploye();i++) {
+			if((listeDeEmploye[i].getGmail()).equals(adresseMail)&&(listeDeEmploye[i].getMotDePasse()).equals(adresseMail)) {
+				return listeDeEmploye[i];
+			}
+		}
+		return null;
+		
 	}
 	
 	public String creerAdresseMail(String prenom, String nom) {
@@ -41,5 +65,9 @@ public class Methodes {
 		resultat = estAuBonFormatNommage(nom);
 		return resultat;
 	}
+	
+	public static void main(String[] args) {
+	}
+	
 	
 }

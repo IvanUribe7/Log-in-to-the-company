@@ -1,5 +1,5 @@
-package serveur;
-import utilisateurs.*;
+package utilisateurs;
+
 public class Serveur {
 	public int nbDeEmploye;
 	public Employe[] listeDeEmploye = new Employe[100];
@@ -7,6 +7,14 @@ public class Serveur {
 	public Serveur() {	
 	}
 	
+	public int getNbDeEmploye() {
+		return nbDeEmploye;
+	}
+
+	public Employe[] getListeDeEmploye() {
+		return listeDeEmploye;
+	}
+
 	public String ajouterEmploye(Employe employe) {
 		String resultat;
 		if(nbDeEmploye==100) {
