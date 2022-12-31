@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Menu {
 	public static Menu menu;
-	public static void main(String[] args) {
+	public static void lancerMenu() {
 		Scanner scanIn = new Scanner(System.in);
 		String reponse;
 		System.out.println("Bonjour !\r\n"
@@ -20,7 +20,7 @@ public class Menu {
 		if(reponse.equals("1")) {
 		Employe[] liste = Employe.getListeDeEmploye();
 		System.out.println(liste[0]);
-		SignUp.main(null);
+		SignUp.lancerNouvelleCompte();
 		}
 		if(reponse.equals("2")) {
 			Employe[] liste = Employe.getListeDeEmploye();

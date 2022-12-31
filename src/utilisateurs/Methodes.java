@@ -7,7 +7,15 @@ public class Methodes{
 	
 	public static Methodes methode;
 	
-	public boolean estDansLaListeDesEmployes(String adresseMail,String motDePasse) {
+	public static int saisirIdEmploye() {
+		return 100 + Employe.getNbDeEmploye();
+	}
+	
+	public static int saisirIdAdmin() {
+		return 200 + Employe.getNbDeEmploye();
+	}
+	
+	public static boolean estDansLaListeDesEmployes(String adresseMail,String motDePasse) {
 		Employe[] listeDeEmploye = Employe.getListeDeEmploye();
 		for(int i = 0; i < Employe.getNbDeEmploye();i++) {
 			if((listeDeEmploye[i].getGmail()).equals(adresseMail)&&(listeDeEmploye[i].getMotDePasse()).equals(motDePasse)) {
@@ -17,7 +25,7 @@ public class Methodes{
 		return false;
 	}
 	
-	public Employe employeDansLaListe(String adresseMail,String motDePasse) {
+	public static Employe employeDansLaListe(String adresseMail,String motDePasse) {
 		Employe[] listeDeEmploye = Employe.getListeDeEmploye();
 		for(int i = 0; i < Employe.getNbDeEmploye();i++) {
 			if((listeDeEmploye[i].getGmail()).equals(adresseMail)&&(listeDeEmploye[i].getMotDePasse()).equals(motDePasse)) {
@@ -28,13 +36,13 @@ public class Methodes{
 		
 	}
 	
-	public String creerAdresseMail(String prenom, String nom) {
+	public static String creerAdresseMail(String prenom, String nom) {
 		prenom = prenom.substring(0,1).toLowerCase() + prenom.substring(1).toLowerCase();
 		nom = nom.substring(0,1).toLowerCase() + nom.substring(1).toLowerCase();
 		return prenom + "_" + nom + "@univtls3.fr";
 	}
 	
-	public boolean estAuBonFormatDate(String date) {
+	public static boolean estAuBonFormatDate(String date) {
         try {
             SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
             formatDate.setLenient(false);

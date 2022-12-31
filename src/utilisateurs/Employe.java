@@ -8,13 +8,15 @@ public class Employe{
 	private String dateDeNaissance;
 	private String gmail;
 	private String motDePasse;
+	private int id;
 	
-	public Employe(String prenom,String nom,String dateDeNaissance,String gmail,String motDePasse) {
+	public Employe(String prenom,String nom,String dateDeNaissance,String gmail,String motDePasse,int id) {
 		this.prenom = prenom;
 		this.nom = nom;
 		this.dateDeNaissance = dateDeNaissance;
 		this.gmail = gmail;
 		this.motDePasse = motDePasse;
+		this.id = id;
 	}
 
 	public String getPrenom() {
@@ -74,25 +76,37 @@ public class Employe{
 	}
 	
 	public void lancerProfil() {
-		Scanner scanIn = new Scanner(System.in);
 		String reponse;
 		System.out.println("Votre prenom est: " + this.getPrenom());
 		System.out.println("Votre nom est: " + this.getNom());
 		System.out.println("Votre date de naissance est: " + this.getDateDeNaissance());
 		System.out.println("Votre adresse mail est: " + this.getGmail());
+		if(this.getId()<200) {
 		System.out.println("Que voulez-vous faire ?\n"
 				+ "1-Changer mes données personnels\n"
-				+ "2-Aller au Menu");
-			reponse = scanIn.nextLine();
+				+ "2-Aller au Menu\n"
+				+ "3-Gestion des comptes");
+				reponse = Scanf.getInput();
+		}else {
+			System.out.println("Que voulez-vous faire ?\n"
+					+ "1-Changer mes données personnels\n"
+					+ "2-Aller au Menu\n");
+					reponse = Scanf.getInput();
+		}
 		switch(reponse) {
 		
 		case "1":this.changerSesDonnees();
 				this.lancerProfil();
-		case "2":Menu.main(null);
+		case "2":Menu.lancerMenu();
+		
+		case "3": 
 		}
-			
 		}
 	
+	public int getId() {
+		return id;
+	}
+
 	public static int nbDeEmploye;
 	public static Employe[] listeDeEmploye = new Employe[100];
 	

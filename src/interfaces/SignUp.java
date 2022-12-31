@@ -9,9 +9,8 @@ public class SignUp {
 	public static SignUp signUp;
 	
 	
-	public static void main(String[] args) {
+	public static void lancerNouvelleCompte() {
 		Methodes methodes = new Methodes();
-		Serveur server = new Serveur();
 		Scanner scanIn = new Scanner(System.in);
 		String prenom = "";
 		String nom,dateDeNaissance,adresseMail,motDePasse,reponseEntrerEnModeAdmin,codeSecretEmploye;
@@ -29,7 +28,7 @@ public class SignUp {
 				+ "2-Non\n");
 		reponseEntrerEnModeAdmin = Scanf.getInput() ;
 		
-		adresseMail = methodes.creerAdresseMail(prenom,nom);
+		adresseMail = Methodes.creerAdresseMail(prenom,nom);
 		
 		if(reponseEntrerEnModeAdmin.equals("1")) {
 			String codeSecret = "123456789";
@@ -37,21 +36,23 @@ public class SignUp {
 			codeSecretEmploye = Scanf.getInput() ;
 			
 			if(codeSecretEmploye.equals(codeSecret)) {
-				Employe admin = new Administrateur(prenom,nom,dateDeNaissance,adresseMail,motDePasse,codeSecretEmploye);
-				Administrateur.ajouterEmploye(admin);
+				int id = Methodes.saisirIdAdmin();
+				Employe admin = new Administrateur(prenom,nom,dateDeNaissance,adresseMail,motDePasse,id);
+				Employe.ajouterEmploye(admin);
 				System.out.println("Votre compte a été créé avec succès, votre nouvelle adresse e-mail est :" + adresseMail);
-				Menu.main(null);
+				Menu.lancerMenu();
 			
 			}else {
 				System.out.println("Erreur: Code Sercret INCORRECTE, veuillez recommencer la création de votre compte!");
-				SignUp.main(null);
+				SignUp.lancerNouvelleCompte();
 			}
 			
 		} else {
-			Employe employe = new Employe(prenom,nom,dateDeNaissance,adresseMail,motDePasse);
+			int id = Methodes.saisirIdEmploye();
+			Employe employe = new Employe(prenom,nom,dateDeNaissance,adresseMail,motDePasse,id);
 			Employe.ajouterEmploye(employe);
 			System.out.println("Votre compte a été créé avec succès, votre nouvelle adresse e-mail est :" + adresseMail);
-			Menu.main(null);
+			Menu.lancerMenu();
 		}
 	}
 	}
