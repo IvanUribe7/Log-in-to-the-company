@@ -5,9 +5,16 @@ import utilisateurs.*;
 import java.util.Scanner;
 
 public class Menu {
+	
+	/*Classe Menu
+	 * Classe qui a comme unique fonction de lancer la méthode lancerMenu() qui 
+	 * demande à l'utilisateur qu'est ce qu'il veut faire dans cette interface.
+	 * */
+	
 	public static Menu menu;
+	
+	
 	public static void lancerMenu() {
-		Scanner scanIn = new Scanner(System.in);
 		String reponse;
 		System.out.println("Bonjour !\r\n"
 				+ "Il s'agit de l'interface principale de l'entreprise\r\n"
@@ -15,17 +22,13 @@ public class Menu {
 				+ "1-Créer un compte\r\n"
 				+ "2-Connectez-vous avec votre compte\r\n"
 				+ "3-Menu de sortie");
-		reponse = scanIn.next();
+		reponse = Scanf.getInput() ;
 		
 		if(reponse.equals("1")) {
-		Employe[] liste = Employe.getListeDeEmploye();
-		System.out.println(liste[0]);
 		SignUp.lancerNouvelleCompte();
 		}
 		if(reponse.equals("2")) {
-			Employe[] liste = Employe.getListeDeEmploye();
-			System.out.println(liste[0].getGmail() + "," + liste[0].getMotDePasse());
-			SignIn.main(null);}
+			SignIn.lancerAccesAvecCompte();}
 		
 		if(reponse.equals("3")) {
 		System.out.println("Merci d'avoir testé cette Démo!");

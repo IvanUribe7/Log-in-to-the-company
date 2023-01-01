@@ -5,7 +5,17 @@ import utilisateurs.*;
 import java.util.Scanner;
 
 public class SignIn{
+	
+	/*Classe SignIn 
+	 * Classe qui a comme unique fonction de lancer la méthode lancerAccesAvecCompte() qui 
+	 * demande à l'utilisateur une adresse électronique et un mot de passe pour accéder à son profil.
+	 * Vous devez créer un compte avant de pouvoir utiliser cette méthode, sinon elle donne une erreur.
+	 * Si vous ne saisissez pas les données correctement, le programme vous demande de les saisir à nouveau.
+	 * */
+	
 	public static SignIn signin;
+	
+	
 	public static void lancerAccesAvecCompte() {
 		
 		String adresseMail,motDePasse;
